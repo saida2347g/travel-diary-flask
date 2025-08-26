@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+    <title>Дневник путешествий</title>
+</head>
+<body>
+    <h1>🌍 Дневник путешествий</h1>
+
+    <p>
+        <a href="/login">Войти</a> | 
+        <a href="/register">Регистрация</a> | 
+        <a href="/add">Добавить путешествие</a> | 
+        <a href="/logout">Выйти</a>
+    </p>
+
+    <h2>Список путешествий</h2>
+    <ul>
+        {% for travel in travels %}
+            <li>
+                <b>{{ travel.title }}</b> — {{ travel.location }} ({{ travel.date_created.strftime("%d-%m-%Y") }})<br>
+                Стоимость: {{ travel.cost }} $ <br>
+                Описание: {{ travel.description }} <br>
+                {% if travel.image %}
+                    <img src="{{ url_for('static', filename='uploads/' ~ travel.image) }}" width="200">
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
